@@ -1,35 +1,37 @@
-body {
-    padding: 20px;
-    max-width: 700px;
-    width: 80%;
-    margin: 20px auto;
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+  }
+  body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
     font-family: 'Source Sans Pro', sans-serif;
-}
+  }
 
-h2 {
-    font-weight: 700px;
-}
-
-hr {
-    border: 0;
-    height: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.footer {
+  .footer {
     position: absolute;
     bottom: 0;
     width: 100%;
+    /* Set the fixed height of the footer here */
     height: 60px;
-    line-height: 60px;
     background-color: #f5f5f5;
+  }
+  
+  
+  /* Custom page CSS
+  -------------------------------------------------- */
+  /* Not required for template or sticky footer method. */
+  
+body > .container {
+    padding: 60px 15px 0;
 }
 
 .container .text-muted {
     margin: 20px 0;
 }
-
-.post {
-    margin-bottom: 20px;
+  
+.navbar-default .navbar-brand {
+    color: black;
 }
