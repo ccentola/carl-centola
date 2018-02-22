@@ -24,4 +24,5 @@ ___
 Simple web app to-do list where users can create, delete, and check-off to-do items.
 
 **Tools**: HTML, CSS, JavaScript, jQuery
+
 [Link](https://ccentola.github.io/todo-app);[Source](https://github.com/ccentola/todo-app)
