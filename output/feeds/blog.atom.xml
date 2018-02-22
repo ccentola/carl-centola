@@ -1,2 +1,319 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Carl Centola - blog</title><link href="/" rel="alternate"></link><link href="/feeds/blog.atom.xml" rel="self"></link><id>/</id><updated>2018-02-16T00:00:00-05:00</updated><entry><title>Seond Test Post</title><link href="/second_post.html" rel="alternate"></link><published>2018-02-16T00:00:00-05:00</published><updated>2018-02-16T00:00:00-05:00</updated><author><name>Carl Centola</name></author><id>tag:None,2018-02-16:/second_post.html</id><summary type="html">&lt;p&gt;Here is a second test post. I am using this post to test the length of the summary as well as to see how multiple posts are displayed on the main page. I hope that I will only need to generate two test posts before I am finally ready to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here is a second test post. I am using this post to test the length of the summary as well as to see how multiple posts are displayed on the main page. I hope that I will only need to generate two test posts before I am finally ready to put my site into production.&lt;/p&gt;</content></entry><entry><title>Introduction</title><link href="/introduction.html" rel="alternate"></link><published>2018-02-03T00:00:00-05:00</published><updated>2018-02-03T00:00:00-05:00</updated><author><name>Carl Centola</name></author><id>tag:None,2018-02-03:/introduction.html</id><summary type="html">&lt;p&gt;Hello and welcome to my blog! My name is Carl Centola and I am a data analyst living and working in Boston, MA.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Hello and welcome to my blog! My name is Carl Centola and I am a data analyst living and working in Boston, MA.&lt;/p&gt;</content></entry></feed>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Carl Centola - blog</title><link href="/" rel="alternate"></link><link href="/feeds/blog.atom.xml" rel="self"></link><id>/</id><updated>2018-02-19T00:00:00-05:00</updated><entry><title>Connecting to a Database using Jupyter Notebooks</title><link href="/connecting_to_a_db.html" rel="alternate"></link><published>2018-02-19T00:00:00-05:00</published><updated>2018-02-19T00:00:00-05:00</updated><author><name>Carl Centola</name></author><id>tag:None,2018-02-19:/connecting_to_a_db.html</id><summary type="html">&lt;p&gt;Connecting to a database is a common issue in data analysis. Often it is easy to create SQL statements, but it can be somewhat cumbersome to convert those statements into useable data without installing some additional software. Jupyter Notebooks offer a convenient way to connect directly to your favorite database …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Connecting to a database is a common issue in data analysis. Often it is easy to create SQL statements, but it can be somewhat cumbersome to convert those statements into useable data without installing some additional software. Jupyter Notebooks offer a convenient way to connect directly to your favorite database without ever having to leave the comfort of your notebook.&lt;/p&gt;
+&lt;p&gt;In this notebook, I will be demonstrating this functionaity using the iris dataset as sample data and sqlite as my database of choice.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# import libraries&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sqlite3&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# read the CSV&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;../data/Iris.csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;First we need to connect to a database and import our data.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# connect to a database&lt;/span&gt;
+&lt;span class="n"&gt;conn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sqlite3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;iris.db&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# store your table in the database&lt;/span&gt;
+&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_sql&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;iris&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;if_exists&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;replace&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# read a SQL Query out of your database and into a pandas dataframe&lt;/span&gt;
+&lt;span class="n"&gt;sql_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;SELECT * FROM iris&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;df_sql&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_sql&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sql_string&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+&lt;/style&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;Id&lt;/th&gt;
+      &lt;th&gt;SepalLengthCm&lt;/th&gt;
+      &lt;th&gt;SepalWidthCm&lt;/th&gt;
+      &lt;th&gt;PetalLengthCm&lt;/th&gt;
+      &lt;th&gt;PetalWidthCm&lt;/th&gt;
+      &lt;th&gt;Species&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;5.1&lt;/td&gt;
+      &lt;td&gt;3.5&lt;/td&gt;
+      &lt;td&gt;1.4&lt;/td&gt;
+      &lt;td&gt;0.2&lt;/td&gt;
+      &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;4.9&lt;/td&gt;
+      &lt;td&gt;3.0&lt;/td&gt;
+      &lt;td&gt;1.4&lt;/td&gt;
+      &lt;td&gt;0.2&lt;/td&gt;
+      &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;4.7&lt;/td&gt;
+      &lt;td&gt;3.2&lt;/td&gt;
+      &lt;td&gt;1.3&lt;/td&gt;
+      &lt;td&gt;0.2&lt;/td&gt;
+      &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td&gt;4.6&lt;/td&gt;
+      &lt;td&gt;3.1&lt;/td&gt;
+      &lt;td&gt;1.5&lt;/td&gt;
+      &lt;td&gt;0.2&lt;/td&gt;
+      &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;td&gt;5&lt;/td&gt;
+      &lt;td&gt;5.0&lt;/td&gt;
+      &lt;td&gt;3.6&lt;/td&gt;
+      &lt;td&gt;1.4&lt;/td&gt;
+      &lt;td&gt;0.2&lt;/td&gt;
+      &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;df_sql&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div&gt;
+&lt;style scoped&gt;
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+&lt;/style&gt;
+&lt;table border="1" class="dataframe"&gt;
+  &lt;thead&gt;
+    &lt;tr style="text-align: right;"&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;index&lt;/th&gt;
+      &lt;th&gt;Id&lt;/th&gt;
+      &lt;th&gt;SepalLengthCm&lt;/th&gt;
+      &lt;th&gt;SepalWidthCm&lt;/th&gt;
+      &lt;th&gt;PetalLengthCm&lt;/th&gt;
+      &lt;th&gt;PetalWidthCm&lt;/th&gt;
+      &lt;th&gt;Species&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;5.1&lt;/td&gt;
+      &lt;td&gt;3.5&lt;/td&gt;
+      &lt;td&gt;1.4&lt;/td&gt;
+      &lt;td&gt;0.2&lt;/td&gt;
+      &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;4.9&lt;/td&gt;
+      &lt;td&gt;3.0&lt;/td&gt;
+      &lt;td&gt;1.4&lt;/td&gt;
+      &lt;td&gt;0.2&lt;/td&gt;
+      &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;4.7&lt;/td&gt;
+      &lt;td&gt;3.2&lt;/td&gt;
+      &lt;td&gt;1.3&lt;/td&gt;
+      &lt;td&gt;0.2&lt;/td&gt;
+      &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td&gt;4.6&lt;/td&gt;
+      &lt;td&gt;3.1&lt;/td&gt;
+      &lt;td&gt;1.5&lt;/td&gt;
+      &lt;td&gt;0.2&lt;/td&gt;
+      &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td&gt;5&lt;/td&gt;
+      &lt;td&gt;5.0&lt;/td&gt;
+      &lt;td&gt;3.6&lt;/td&gt;
+      &lt;td&gt;1.4&lt;/td&gt;
+      &lt;td&gt;0.2&lt;/td&gt;
+      &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Next, using Jupyter magic commands, we can query our database tables using the familiar SQL dialect we all know and love.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;load_ext&lt;/span&gt; &lt;span class="n"&gt;sql&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;sql&lt;/span&gt; &lt;span class="n"&gt;sqlite&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;///&lt;/span&gt;&lt;span class="n"&gt;iris&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;db&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;#39;Connected: None@iris.db&amp;#39;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;sql&lt;/span&gt; &lt;span class="n"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;iris&lt;/span&gt; &lt;span class="nn"&gt;limit&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Done.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;index&lt;/th&gt;
+        &lt;th&gt;Id&lt;/th&gt;
+        &lt;th&gt;SepalLengthCm&lt;/th&gt;
+        &lt;th&gt;SepalWidthCm&lt;/th&gt;
+        &lt;th&gt;PetalLengthCm&lt;/th&gt;
+        &lt;th&gt;PetalWidthCm&lt;/th&gt;
+        &lt;th&gt;Species&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;0&lt;/td&gt;
+        &lt;td&gt;1&lt;/td&gt;
+        &lt;td&gt;5.1&lt;/td&gt;
+        &lt;td&gt;3.5&lt;/td&gt;
+        &lt;td&gt;1.4&lt;/td&gt;
+        &lt;td&gt;0.2&lt;/td&gt;
+        &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;1&lt;/td&gt;
+        &lt;td&gt;2&lt;/td&gt;
+        &lt;td&gt;4.9&lt;/td&gt;
+        &lt;td&gt;3.0&lt;/td&gt;
+        &lt;td&gt;1.4&lt;/td&gt;
+        &lt;td&gt;0.2&lt;/td&gt;
+        &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;2&lt;/td&gt;
+        &lt;td&gt;3&lt;/td&gt;
+        &lt;td&gt;4.7&lt;/td&gt;
+        &lt;td&gt;3.2&lt;/td&gt;
+        &lt;td&gt;1.3&lt;/td&gt;
+        &lt;td&gt;0.2&lt;/td&gt;
+        &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;3&lt;/td&gt;
+        &lt;td&gt;4&lt;/td&gt;
+        &lt;td&gt;4.6&lt;/td&gt;
+        &lt;td&gt;3.1&lt;/td&gt;
+        &lt;td&gt;1.5&lt;/td&gt;
+        &lt;td&gt;0.2&lt;/td&gt;
+        &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;4&lt;/td&gt;
+        &lt;td&gt;5&lt;/td&gt;
+        &lt;td&gt;5.0&lt;/td&gt;
+        &lt;td&gt;3.6&lt;/td&gt;
+        &lt;td&gt;1.4&lt;/td&gt;
+        &lt;td&gt;0.2&lt;/td&gt;
+        &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;5&lt;/td&gt;
+        &lt;td&gt;6&lt;/td&gt;
+        &lt;td&gt;5.4&lt;/td&gt;
+        &lt;td&gt;3.9&lt;/td&gt;
+        &lt;td&gt;1.7&lt;/td&gt;
+        &lt;td&gt;0.4&lt;/td&gt;
+        &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;6&lt;/td&gt;
+        &lt;td&gt;7&lt;/td&gt;
+        &lt;td&gt;4.6&lt;/td&gt;
+        &lt;td&gt;3.4&lt;/td&gt;
+        &lt;td&gt;1.4&lt;/td&gt;
+        &lt;td&gt;0.3&lt;/td&gt;
+        &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;7&lt;/td&gt;
+        &lt;td&gt;8&lt;/td&gt;
+        &lt;td&gt;5.0&lt;/td&gt;
+        &lt;td&gt;3.4&lt;/td&gt;
+        &lt;td&gt;1.5&lt;/td&gt;
+        &lt;td&gt;0.2&lt;/td&gt;
+        &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;8&lt;/td&gt;
+        &lt;td&gt;9&lt;/td&gt;
+        &lt;td&gt;4.4&lt;/td&gt;
+        &lt;td&gt;2.9&lt;/td&gt;
+        &lt;td&gt;1.4&lt;/td&gt;
+        &lt;td&gt;0.2&lt;/td&gt;
+        &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;9&lt;/td&gt;
+        &lt;td&gt;10&lt;/td&gt;
+        &lt;td&gt;4.9&lt;/td&gt;
+        &lt;td&gt;3.1&lt;/td&gt;
+        &lt;td&gt;1.5&lt;/td&gt;
+        &lt;td&gt;0.1&lt;/td&gt;
+        &lt;td&gt;Iris-setosa&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;And there you have it: A fast and easy way to integrate SQL knowledge into Jupyter Notebooks!&lt;/p&gt;</content></entry><entry><title>Introduction</title><link href="/introduction.html" rel="alternate"></link><published>2018-02-03T00:00:00-05:00</published><updated>2018-02-03T00:00:00-05:00</updated><author><name>Carl Centola</name></author><id>tag:None,2018-02-03:/introduction.html</id><summary type="html">&lt;p&gt;Hello and welcome to my blog! My name is Carl Centola and I am a data analyst living and working in Boston, MA.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Hello and welcome to my blog! My name is Carl Centola and I am a data analyst living and working in Boston, MA.&lt;/p&gt;</content></entry></feed>
